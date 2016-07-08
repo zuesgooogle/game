@@ -1,0 +1,15 @@
+{
+	"javaPackage": "com.s4game.protocol",
+	"mappers": [
+		{
+			"clazz": "Message",
+			"id": 1001,
+			"name": "Request"
+		},
+		{
+			"clazz": "Message",
+			"id": 1002,
+			"name": "Response"
+		}
+	]
+}

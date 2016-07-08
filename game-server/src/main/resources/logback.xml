@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+<configuration>
+    <property name="LOG_DIR" value="./logs" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger - %msg%n%ex</pattern>
+        </encoder>
+    </appender>
+    <appender name="ALL_ROLLFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/stdout.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/all.%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger - %msg%n%ex</pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC_ROLLFILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ALL_ROLLFILE" />
+        <queueSize>1024</queueSize>
+        <maxFlushTime>3000</maxFlushTime>
+    </appender>
+    
+    <logger name="org" level="INFO" additivity="false"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ALL_ROLLFILE" />
+    </root>
+</configuration>

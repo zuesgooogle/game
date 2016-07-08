@@ -1,0 +1,18 @@
+option java_package = "com.s4game.protocol";
+option java_outer_classname = "Message";
+
+/*
+ * @Id(1001)
+ */
+message Request {
+    required string command = 1; // this is test
+    required string data = 2;
+}
+
+/*
+ * @Id(1002)
+ */
+message Response {
+    required string command = 1;
+    required string data = 2;
+}
