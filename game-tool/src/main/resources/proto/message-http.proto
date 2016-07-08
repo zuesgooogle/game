@@ -1,8 +1,13 @@
 option java_package = "com.s4game.protocol";
-option java_outer_classname = "Message";
+option java_outer_classname = "Http";
+
+// ===============================================
+// message id region [1, 99]
+// ===============================================
+
 
 /*
- * @Id(1001)
+ * @Id(1)
  */
 message Request {
     required string command = 1; // this is test
@@ -10,7 +15,7 @@ message Request {
 }
 
 /*
- * @Id(1002)
+ * @Id(2)
  */
 message Response {
     required string command = 1;

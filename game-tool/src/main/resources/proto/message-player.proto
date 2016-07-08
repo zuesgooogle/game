@@ -1,0 +1,22 @@
+option java_package = "com.s4game.protocol";
+option java_outer_classname = "Player";
+
+import "proto/enum.proto";
+import "proto/structure.proto";
+
+// ===============================================
+// message id region [1000, 1999]
+// ===============================================
+
+/*
+ * @Id(1000)
+ */
+message CgPlayerInfo {
+}
+
+/*
+ * @Id(1001)
+ */
+message GcPlayerInfo {
+    required PPlayerInfo playerInfo = 1;
+}

@@ -1,0 +1,9 @@
+option java_package = "com.s4game.protocol";
+option java_outer_classname = "Enum";
+
+enum PPlayerProperty {
+
+    LEVEL = 1;
+
+    EXP = 2;
+}

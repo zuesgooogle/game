@@ -15,3 +15,4 @@ game-client/.project
 *.prefs
 game-parent/.project
 *.project
+*.log
