@@ -13,7 +13,7 @@ public class ServerMain {
         
         ApplicationInit.init();
         
-        LOG.info("game server starting success.");
+        LOG.info("game server started successfully.");
     }
 
 }

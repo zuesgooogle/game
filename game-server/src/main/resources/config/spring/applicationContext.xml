@@ -8,11 +8,16 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<context:annotation-config />
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<context:component-scan base-package="com.s4game.server" />
 	
-	<context:annotation-config />
-    <context:component-scan base-package="com.s4game.server" />
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
     
+    <bean id="applicationContext" class="com.s4game.core.spring.SpringApplicationContext" />
+    
+    
+    
+    
+    <import resource="action.xml"/>
 	<import resource="network.xml"/>
 	
 </beans>

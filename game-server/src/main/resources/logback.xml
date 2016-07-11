@@ -24,7 +24,7 @@
         <maxFlushTime>3000</maxFlushTime>
     </appender>
     
-    <logger name="org" level="INFO" additivity="false"/>
+    <logger name="com.s4game.core" level="DEBUG" additivity="true"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />

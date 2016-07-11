@@ -45,9 +45,7 @@ public class DefaultActionManager implements ActionManager {
                     if (null != actionMapping) {
                         resolvers.put(actionMapping.message(), new DefaultActionResolver(m, applicationContext.getBean(clazz)));
                         
-                        if (LOG.isDebugEnabled()) {
-                            LOG.debug("resolver action mapping. message: {}, method: {}", actionMapping.message(), m.getName());
-                        }
+                        LOG.debug("resolver action mapping. message: {}, method: {}", actionMapping.message(), m.getName());
                     }
                 }
             } catch (Exception e) {

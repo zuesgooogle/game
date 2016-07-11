@@ -10,6 +10,7 @@ public class DefaultActionResolver implements ActionResolver {
     private Logger LOG = LoggerFactory.getLogger(getClass());
 
     private Method m;
+    
     private Object target;
 
     public DefaultActionResolver(Method m, Object target) {

@@ -48,10 +48,10 @@ public class ServerListener {
             
             this.success = true;
             
-            LOG.info("server started successfully. bind port: {}", port);
+            LOG.info("net server started successfully. bind port: {}", port);
         } catch (InterruptedException e) {
             
-            LOG.error("server boot failed bind port: {}", port, e);
+            LOG.error("net server boot failed bind port: {}", port, e);
             throw new RuntimeException(e);
         }
     }
