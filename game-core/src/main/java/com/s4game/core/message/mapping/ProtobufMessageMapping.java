@@ -1,4 +1,4 @@
-package com.s4game.core.message;
+package com.s4game.core.message.mapping;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.MessageLite;
+import com.s4game.core.message.MessageConfig;
 import com.s4game.core.message.MessageConfig.MessageMapper;
 
 public class ProtobufMessageMapping implements MessageMapping<MessageLite> {

@@ -3,7 +3,7 @@ package com.s4game.core.net.codec.protobuf;
 import java.util.List;
 
 import com.google.protobuf.MessageLite;
-import com.s4game.core.message.MessageMapping;
+import com.s4game.core.message.mapping.MessageMapping;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

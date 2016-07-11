@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd     
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <bean id="messageMapping" class="com.s4game.core.message.ProtobufMessageMapping" init-method="init"/>
+    <bean id="messageMapping" class="com.s4game.core.message.mapping.ProtobufMessageMapping" init-method="init"/>
 
 	<bean id="clientHandler" class="com.s4game.client.net.ClientHandler" />
 	<bean id="clientInitializer" class="com.s4game.core.net.NetInitializer">

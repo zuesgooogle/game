@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.MessageLite;
 import com.s4game.core.exception.MessageNotFoundException;
-import com.s4game.core.message.MessageMapping;
+import com.s4game.core.message.mapping.MessageMapping;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler.Sharable;

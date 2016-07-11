@@ -1,4 +1,4 @@
-package com.s4game.core.message;
+package com.s4game.core.message.mapping;
 
 /**
  * MessageId 与 Message Prototype 的对应关系
