@@ -16,7 +16,7 @@
     
     
     
-    
+    <import resource="io.xml"/>
     <import resource="action.xml"/>
 	<import resource="network.xml"/>
 	
