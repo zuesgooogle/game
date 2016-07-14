@@ -33,26 +33,25 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
      */
     private int triggerSize = 300000;
 
-    private Map<String, Integer> groups;
+    private Map<String, Integer> config;
 
-    private Map<String, TimeoutExecutorGroup> groupMap = new HashMap<>();
+    private Map<String, TimeoutExecutorGroup> groups = new HashMap<>();
 
     public void init() {
-        Assert.notNull(groups);
+        Assert.notNull(config);
 
-        for (Map.Entry<String, Integer> entry : groups.entrySet()) {
+        for (Map.Entry<String, Integer> entry : config.entrySet()) {
             addExecutorGroup(entry.getKey(), entry.getValue());
         }
 
-        // clean thread
         Thread cleaner = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     for (;;) {
                         TimeUnit.MILLISECONDS.sleep(cleanPeroid);
-                        
-                        for (TimeoutExecutorGroup executorGroup : groupMap.values()) {
+
+                        for (TimeoutExecutorGroup executorGroup : groups.values()) {
                             executorGroup.clean();
                         }
                     }
@@ -68,13 +67,13 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
 
     @Override
     public void execute(Runnable task, Route route) {
-        groupMap.get(route.getGroup()).getExecutor(route.getData()).execute(task);
+        groups.get(route.getGroup()).getExecutor(route.getData()).execute(task);
     }
 
     @Override
     public void addExecutorGroup(String groupName, int size) {
-        if (!groupMap.containsKey(groupName)) {
-            groupMap.put(groupName, new TimeoutExecutorGroup(groupName, size));
+        if (!groups.containsKey(groupName)) {
+            groups.put(groupName, new TimeoutExecutorGroup(groupName, size));
         }
     }
 
@@ -102,12 +101,12 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
         this.triggerSize = triggerSize;
     }
 
-    public Map<String, Integer> getGroups() {
-        return groups;
+    public Map<String, Integer> getConfig() {
+        return config;
     }
 
-    public void setGroups(Map<String, Integer> groups) {
-        this.groups = groups;
+    public void setConfig(Map<String, Integer> config) {
+        this.config = config;
     }
 
     public class TimeoutExecutorGroup {
@@ -161,7 +160,7 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
                     try {
                         for (;;) {
                             TimeoutTask task = queue.take();
-                            task.run(); 
+                            task.run();
                         }
                     } catch (Exception e) {
                         LOG.error("", e);
@@ -179,7 +178,8 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
             int size = queue.size();
 
             if (size > triggerSize) {
-                LOG.info("TimeoutExecutor[{}] task current size: {}, trigger size: {}", getName(), size, triggerSize);
+                LOG.info("TimeoutExecutor[{}] task current size: {}, trigger size: {}", getName(),
+                        size, triggerSize);
 
                 long now = System.currentTimeMillis();
                 int count = 0;
@@ -194,7 +194,8 @@ public class TimeoutBusinessExecutor implements BusinessExecutor {
                 }
 
                 long useTime = System.currentTimeMillis() - now;
-                LOG.info("TimeoutExecutor[{}] clean finished. use time: {} ms, clean count: {}", getName(), useTime, count);
+                LOG.info("TimeoutExecutor[{}] clean finished. use time: {} ms, clean count: {}",
+                        getName(), useTime, count);
             }
         }
 
