@@ -17,7 +17,17 @@ public class Message {
     public Message() {
 
     }
+    
+    public Message(Object body, MessageSource source) {
+        this(body, source, MessageDestination.BUS);
+    }
 
+    public Message(Object body, MessageSource source, MessageDestination destination) {
+        this.body = body;
+        this.source = source;
+        this.destination = destination;
+    }
+    
     public MessageSource getSource() {
         return source;
     }

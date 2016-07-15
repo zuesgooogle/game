@@ -4,9 +4,13 @@ package com.s4game.server.net;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.protobuf.MessageLite;
+import com.s4game.core.message.Message;
+import com.s4game.core.message.MessageSource;
 import com.s4game.protocol.Message.Response;
+import com.s4game.server.message.MessageDispatcher;
 
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -22,6 +26,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class NetHandler extends SimpleChannelInboundHandler<MessageLite> {
 
 	private Logger LOG = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private MessageDispatcher messageDispatcher;
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -43,6 +50,9 @@ public class NetHandler extends SimpleChannelInboundHandler<MessageLite> {
 		                        .build();
 		
 		ctx.channel().writeAndFlush(response);
+		
+		Message message = new Message(msg, MessageSource.CLIENT);
+		messageDispatcher.in(message);
 	}
 
 	@Override

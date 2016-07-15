@@ -1,4 +1,4 @@
-package com.s4game.core.thread.executor;
+package com.s4game.server.share.executor;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,6 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
+import com.s4game.core.thread.executor.BusinessExecutor;
+import com.s4game.core.thread.executor.Route;
+import com.s4game.core.thread.executor.RuleChecker;
+
 /**
  * 获取最少任务的 Executor
  * 
@@ -25,25 +29,25 @@ public class BalanceBusinessExecutor implements BusinessExecutor {
     private Logger LOG = LoggerFactory.getLogger(getClass());
 
     private String name;
-    
+
     /**
      * clean 线程轮训周期
      */
     private int cleanPeroid = 600000; // ms
-    
+
     private RuleChecker ruleChecker;
 
     private Map<String, Integer> config;
 
     private HashMap<String, BalanceExecutorGroup> groups = new HashMap<>();
-    
+
     public void init() {
         Assert.notNull(config);
 
         for (Map.Entry<String, Integer> entry : config.entrySet()) {
             addExecutorGroup(entry.getKey(), entry.getValue());
         }
-        
+
         Thread cleaner = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -64,7 +68,7 @@ public class BalanceBusinessExecutor implements BusinessExecutor {
         cleaner.setDaemon(true);
         cleaner.start();
     }
-    
+
     @Override
     public void execute(Runnable task, Route route) {
         ExecutorService executor = groups.get(route.getGroup()).getExecutorService(route.getData());
@@ -161,23 +165,22 @@ public class BalanceBusinessExecutor implements BusinessExecutor {
         }
 
         /**
-         * clean relation
-         * reset loadFactor
+         * clean relation reset loadFactor
          */
         public void clean() {
             Iterator<RuleExecutorRelation> iter = ruleMap.values().iterator();
-            while(iter.hasNext()) {
+            while (iter.hasNext()) {
                 RuleExecutorRelation relation = iter.next();
                 if (relation.canClean()) {
                     iter.remove();
                 }
             }
-            
-            for(BalanceExecutor executor : executors) {
+
+            for (BalanceExecutor executor : executors) {
                 executor.clean();
             }
         }
-        
+
         public String getName() {
             return name;
         }

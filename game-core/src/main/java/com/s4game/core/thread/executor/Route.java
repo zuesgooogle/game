@@ -10,6 +10,11 @@ public class Route {
 
     }
 
+    public Route(String group, String data) {
+        this.group = group;
+        this.data = data;
+    }
+    
     public String getGroup() {
         return group;
     }

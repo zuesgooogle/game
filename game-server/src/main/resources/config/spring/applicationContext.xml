@@ -14,8 +14,6 @@
     
     <bean id="applicationContext" class="com.s4game.core.spring.SpringApplicationContext" />
     
-    
-    <import resource="bus.xml"/>
     <import resource="io.xml"/>
     <import resource="action.xml"/>
 	<import resource="network.xml"/>

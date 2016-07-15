@@ -30,4 +30,7 @@ public class SpringApplicationContext implements ApplicationContextAware {
         return applicationContext.getBean(requiredType);
     }
 
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
+        return applicationContext.getBeansOfType(type);
+    }
 }
