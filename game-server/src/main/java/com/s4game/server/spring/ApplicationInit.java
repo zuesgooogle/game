@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationInit {
 
-    private static ApplicationContext ctx;
+    private static ClassPathXmlApplicationContext ctx;
 
     public static void init() {
         initSpringContext();

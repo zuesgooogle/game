@@ -14,6 +14,19 @@ import com.s4game.server.share.moduleinit.Group;
 @Configuration
 public class ExecutorConfiguration {
 
+    @Bean(name = "netExecutor")
+    public BusinessExecutor getNetExecutor() {
+        TimeoutBusinessExecutor executor = new TimeoutBusinessExecutor();
+        
+        Map<String, Integer> config = new HashMap<>();
+        config.put("ALL", 1);
+        config.put("BUS", 1);
+        config.put("STAGE", 1);
+
+        executor.setConfig(config);
+        return executor;
+    }
+    
     @Bean(name = "busExecutor")
     public BusinessExecutor getBusExecutor() {
         BalanceBusinessExecutor executor = new BalanceBusinessExecutor();
