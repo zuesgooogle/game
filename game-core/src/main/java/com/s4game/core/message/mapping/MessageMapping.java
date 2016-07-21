@@ -8,10 +8,13 @@ package com.s4game.core.message.mapping;
  */
 public interface MessageMapping<T> {
 
+    /**
+     * 初始化消息映射
+     */
     void init();
     
     /**
-     *  根据 messageId 获取 MessageLite
+     *  根据 messageId 获取 Message 类型
      */
     T getPrototype(int messageId);
     

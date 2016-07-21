@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.s4game.core.action.manager.ActionManager;
 import com.s4game.core.action.manager.DefaultActionManager;
-import com.s4game.core.message.mapping.ProtobufMessageMapping;
+import com.s4game.server.message.mapping.ProtobufMessageMapping;
 
 @Configuration
 public class MessageConfiguration {
