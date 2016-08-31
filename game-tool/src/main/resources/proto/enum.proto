@@ -1,9 +1,8 @@
 option java_package = "com.s4game.protocol";
 option java_outer_classname = "Enum";
 
+//玩家属性
 enum PPlayerProperty {
-
     LEVEL = 1;
-
     EXP = 2;
 }

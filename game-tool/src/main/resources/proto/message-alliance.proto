@@ -1,0 +1,20 @@
+option java_package = "com.s4game.protocol";
+option java_outer_classname = "AllianceMessage";
+
+// ===============================================
+// @Region [1100, 1199]
+// ===============================================
+
+
+/*
+ * @Id(1100)
+ */
+message CgAllianceList {
+}
+
+/*
+ * @Id(1101)
+ */
+message GcAllianceList {
+
+}

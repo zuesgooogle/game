@@ -1,11 +1,11 @@
 option java_package = "com.s4game.protocol";
-option java_outer_classname = "Player";
+option java_outer_classname = "PlayerMessage";
 
 import "proto/enum.proto";
 import "proto/structure.proto";
 
 // ===============================================
-// message id region [1000, 1999]
+// @Region [1000, 1099]
 // ===============================================
 
 /*

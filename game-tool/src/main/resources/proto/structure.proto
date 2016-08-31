@@ -4,24 +4,19 @@ option java_outer_classname = "Structure";
 //玩家信息
 message PPlayerInfo {
     required int64 roleId = 1; //角色id
-
     required string name = 2; //角色名称
-
     optional string head = 3; //角色头像
 }
 
 //联盟信息
 message PAllianceInfo {
     required string id = 1; //联盟id
-
     required string name = 2; //联盟名称
-
     repeated PAllianceMember members = 3; //联盟成员
 }
 
 //联盟成员
 message PAllianceMember {
     required int64 roleId = 1;
-
     required int32 level = 2;
 }
