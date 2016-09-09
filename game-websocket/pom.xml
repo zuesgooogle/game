@@ -6,7 +6,13 @@
 		<artifactId>game-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>game-server</artifactId>
+	<artifactId>game-websocket</artifactId>
+
+    <properties>
+        <finalName>game-server</finalName>
+        <appassembler.target>${project.build.directory}/appassembler</appassembler.target>
+        <appassembler.assemble.directory>${appassembler.target}/jsw/${finalName}</appassembler.assemble.directory>
+    </properties>
 
 	<build>
 		<resources>
@@ -49,7 +55,7 @@
 							<daemons>
 								<daemon>
 									<id>game-server</id>
-									<mainClass>com.s4game.server.ServerMain</mainClass>
+									<mainClass>com.s4game.server.websocket.server.WebSocketServer</mainClass>
 									<generatorConfigurations>
 										<generatorConfiguration>
 											<generator>jsw</generator>
@@ -121,12 +127,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.s4game</groupId>
-			<artifactId>game-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
